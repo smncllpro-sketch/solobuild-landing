@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Château Bellecroix — Entre-deux-Mers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --wine: #722F37;
+    --wine-dark: #4A1C22;
+    --gold: #C9A96E;
+    --gold-light: #D4BC8B;
+    --charcoal: #2C2C2C;
+    --text: #3D3530;
+    --text-light: #7A7067;
+    --white: #FEFCF9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(254,252,249,0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 2rem;
+    box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  nav.scrolled .nav-logo { color: var(--wine-dark); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav.scrolled .nav-links a { color: var(--text-light); }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: background 0.4s; }
+  nav.scrolled .nav-toggle span { background: var(--charcoal); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(160deg, rgba(74,28,34,0.65) 0%, rgba(44,44,44,0.4) 50%, rgba(74,28,34,0.55) 100%),
+      url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1600&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: heroZoom 20s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.12); }
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+  }
+  .hero-crest {
+    width: 80px;
+    height: 80px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    animation: fadeUp 1s ease-out 0.2s both;
+  }
+  .hero-crest svg { width: 36px; height: 36px; }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    animation: fadeUp 1s ease-out 0.4s both;
+  }
+  .hero-sub {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 1.2rem;
+    animation: fadeUp 1s ease-out 0.6s both;
+  }
+  .hero-line {
+    width: 50px;
+    height: 1px;
+    background: var(--gold);
+    margin: 2rem auto;
+    animation: fadeUp 1s ease-out 0.8s both;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s;
+    animation: fadeUp 1s ease-out 1s both;
+  }
+  .hero-cta:hover {
+    background: var(--gold);
+    color: var(--wine-dark);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--wine-dark);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── HISTOIRE ── */
+  .histoire {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .histoire-img {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  .histoire-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85);
+    transition: transform 0.8s;
+  }
+  .histoire-img:hover img { transform: scale(1.04); }
+  .histoire-img::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .histoire-text p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+  }
+  .histoire-stat {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201,169,110,0.3);
+  }
+  .histoire-stat div {
+    text-align: center;
+  }
+  .histoire-stat strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--wine);
+  }
+  .histoire-stat span {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* ── VINS ── */
+  .vins-section { background: var(--white); }
+  .vins-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+  .vins-header p { font-size: 1rem; line-height: 1.8; color: var(--text-light); }
+  .vins-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .vin-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    background: var(--cream);
+    position: relative;
+    transition: transform 0.4s;
+  }
+  .vin-card:hover { transform: translateY(-6px); }
+  .vin-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: var(--gold);
+  }
+  .vin-icon {
+    width: 60px;
+    height: 60px;
+    margin: 1rem auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vin-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--wine-dark);
+    margin-bottom: 0.5rem;
+  }
+  .vin-card .vin-appellation {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .vin-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-light);
+  }
+
+  /* ── VISITE ── */
+  .visite {
+    position: relative;
+    background:
+      linear-gradient(rgba(74,28,34,0.78), rgba(74,28,34,0.78)),
+      url('https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1600&q=80') center/cover no-repeat;
+    text-align: center;
+    color: var(--white);
+  }
+  .visite .section-label { color: var(--gold-light); }
+  .visite .section-title { color: var(--white); }
+  .visite p {
+    max-width: 550px;
+    margin: 0 auto 2.5rem;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.8);
+  }
+  .visite-features {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .visite-feature {
+    text-align: center;
+  }
+  .visite-feature .vf-icon {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.8rem;
+  }
+  .visite-feature span {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+  .visite-cta {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--gold);
+    color: var(--wine-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s;
+  }
+  .visite-cta:hover { background: var(--gold-light); }
+
+  /* ── CONTACT ── */
+  .contact {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+    text-align: left;
+  }
+  .contact-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--wine-dark);
+    margin-bottom: 1.5rem;
+  }
+  .contact-info p {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--text-light);
+  }
+  .contact-info a {
+    color: var(--wine);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .contact-info a:hover { color: var(--gold); }
+  .contact-hours h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--wine-dark);
+    margin-bottom: 1.5rem;
+  }
+  .contact-hours p {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--text-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  footer .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  footer p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.08em;
+  }
+  footer .footer-legal {
+    margin-top: 1rem;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(254,252,249,0.98);
+      padding: 1.5rem 2rem;
+      gap: 1rem;
+    }
+    .nav-links.open a { color: var(--text); }
+    .histoire { grid-template-columns: 1fr; gap: 2rem; }
+    .histoire-img { max-height: 350px; }
+    .histoire-stat { gap: 2rem; }
+    .vins-grid { grid-template-columns: 1fr; max-width: 360px; }
+    .visite-features { gap: 2rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Château Bellecroix</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#histoire">Notre Histoire</a></li>
+    <li><a href="#vins">Nos Vins</a></li>
+    <li><a href="#visite">Visites</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-crest">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 4C18 4 8 14 8 22C8 27.5 12.5 32 18 32C23.5 32 28 27.5 28 22C28 14 18 4 18 4Z" stroke="#C9A96E" stroke-width="1.2"/>
+        <path d="M18 12V26" stroke="#C9A96E" stroke-width="1"/>
+        <path d="M14 18C14 18 16 20 18 20C20 20 22 18 22 18" stroke="#C9A96E" stroke-width="1"/>
+      </svg>
+    </div>
+    <h1>Château Bellecroix</h1>
+    <p class="hero-sub">Entre-deux-Mers — Depuis 1892</p>
+    <div class="hero-line"></div>
+    <a href="#vins" class="hero-cta">Découvrir nos vins</a>
+  </div>
+</section>
+
+<!-- HISTOIRE -->
+<section id="histoire" style="padding: 6rem 2rem;">
+  <div class="histoire">
+    <div class="histoire-img">
+      <img src="https://images.unsplash.com/photo-1566903451935-7e8835ed3e97?w=800&q=80" alt="Vignoble Château Bellecroix" loading="lazy">
+    </div>
+    <div class="histoire-text">
+      <p class="section-label">Notre Histoire</p>
+      <h2 class="section-title">Cinq générations<br>de passion</h2>
+      <p>Niché au cœur de l'Entre-deux-Mers, le Château Bellecroix perpétue depuis 1892 un savoir-faire familial transmis de génération en génération. Nos coteaux argilo-calcaires, exposés plein sud, offrent aux raisins les conditions idéales pour exprimer toute la richesse de ce terroir unique.</p>
+      <p>Aujourd'hui, Marie et Philippe Dauriac conduisent le domaine en agriculture raisonnée, avec une conversion bio amorcée en 2021. Chaque cuvée raconte l'histoire de cette terre et de ceux qui la cultivent.</p>
+      <div class="histoire-stat">
+        <div>
+          <strong>32</strong>
+          <span>Hectares</span>
+        </div>
+        <div>
+          <strong>1892</strong>
+          <span>Fondation</span>
+        </div>
+        <div>
+          <strong>5<sup>e</sup></strong>
+          <span>Génération</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VINS -->
+<section id="vins" class="vins-section">
+  <div class="vins-header">
+    <p class="section-label">Nos Vins</p>
+    <h2 class="section-title">L'expression du terroir</h2>
+    <p>Trois cuvées qui reflètent la diversité de nos parcelles et le caractère de l'Entre-deux-Mers.</p>
+  </div>
+  <div class="vins-grid">
+    <div class="vin-card">
+      <div class="vin-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="16" rx="10" ry="12" stroke="#722F37" stroke-width="1.2"/><line x1="20" y1="28" x2="20" y2="38" stroke="#722F37" stroke-width="1.2"/><line x1="14" y1="38" x2="26" y2="38" stroke="#722F37" stroke-width="1.2"/></svg>
+      </div>
+      <h3>Cuvée Classique</h3>
+      <p class="vin-appellation">Bordeaux Blanc Sec</p>
+      <p>Sauvignon et Sémillon. Frais et aromatique, il accompagne fruits de mer et poissons grillés avec une belle vivacité.</p>
+    </div>
+    <div class="vin-card">
+      <div class="vin-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="16" rx="10" ry="12" stroke="#722F37" stroke-width="1.2"/><line x1="20" y1="28" x2="20" y2="38" stroke="#722F37" stroke-width="1.2"/><line x1="14" y1="38" x2="26" y2="38" stroke="#722F37" stroke-width="1.2"/><circle cx="20" cy="14" r="4" stroke="#C9A96E" stroke-width="0.8"/></svg>
+      </div>
+      <h3>Cuvée des Coteaux</h3>
+      <p class="vin-appellation">Entre-deux-Mers</p>
+      <p>Notre cuvée signature. Un assemblage précis qui exprime la minéralité de nos sols calcaires et la rondeur du Sémillon.</p>
+    </div>
+    <div class="vin-card">
+      <div class="vin-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="16" rx="10" ry="12" fill="#722F37" fill-opacity="0.12" stroke="#722F37" stroke-width="1.2"/><line x1="20" y1="28" x2="20" y2="38" stroke="#722F37" stroke-width="1.2"/><line x1="14" y1="38" x2="26" y2="38" stroke="#722F37" stroke-width="1.2"/></svg>
+      </div>
+      <h3>Réserve de Marie</h3>
+      <p class="vin-appellation">Bordeaux Supérieur Rouge</p>
+      <p>Merlot dominant, élevé 12 mois en fûts. Robe profonde, tanins soyeux, notes de fruits noirs et d'épices douces.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VISITE -->
+<section id="visite" class="visite">
+  <p class="section-label">Visites & Dégustations</p>
+  <h2 class="section-title">Venez à notre rencontre</h2>
+  <p>Poussez la porte du chai, parcourez les rangs de vigne, et partagez un moment de convivialité autour de nos cuvées. Nous vous accueillons toute l'année sur rendez-vous.</p>
+  <div class="visite-features">
+    <div class="visite-feature">
+      <div class="vf-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <span>1h30</span>
+    </div>
+    <div class="visite-feature">
+      <div class="vf-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <span>2 à 12 pers.</span>
+    </div>
+    <div class="visite-feature">
+      <div class="vf-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <span>Dégustation incluse</span>
+    </div>
+  </div>
+  <a href="#contact" class="visite-cta">Réserver une visite</a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding: 6rem 2rem;">
+  <div class="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Nous trouver</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Coordonnées</h3>
+        <p>
+          Château Bellecroix<br>
+          12 Chemin des Vignes<br>
+          33760 Baigneaux<br><br>
+          <a href="tel:+33556230000">05 56 23 00 00</a><br>
+          <a href="mailto:contact@chateau-bellecroix.fr">contact@chateau-bellecroix.fr</a>
+        </p>
+      </div>
+      <div class="contact-hours">
+        <h3>Horaires de visite</h3>
+        <p>
+          Lundi — Vendredi : 9h – 12h / 14h – 18h<br>
+          Samedi : 10h – 17h<br>
+          Dimanche : sur rendez-vous<br><br>
+          <em style="font-size:0.85rem; color: var(--gold);">Dégustation gratuite toute l'année</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Château Bellecroix</p>
+  <p>Entre-deux-Mers — Baigneaux, Gironde</p>
+  <p class="footer-legal">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+  // Close mobile menu on link click
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.histoire-text, .histoire-img, .vin-card, .visite-feature, .contact-grid').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

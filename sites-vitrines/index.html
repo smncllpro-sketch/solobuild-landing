@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sites Vitrines — Simon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F4F0;
+    --white: #FFFFFF;
+    --noir: #1A1816;
+    --text: #3D3835;
+    --text-light: #8A8279;
+    --accent: #C4836A;
+    --accent-hover: #A96B54;
+    --border: #E8E3DC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .hero-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 400;
+    color: var(--noir);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+  .hero p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-light);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 0 2rem 4rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat strong {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .stat span {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* ── PROJECTS ── */
+  .projects {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border-radius: 2px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    transition: box-shadow 0.4s;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+  }
+  .project-card:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  }
+
+  .project-preview {
+    background: #E8E3DC;
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+  }
+  .project-preview iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: top left;
+    border: none;
+    pointer-events: none;
+  }
+  .project-preview-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .project-info {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .project-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .project-info h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--noir);
+    line-height: 1.25;
+    margin-bottom: 0.8rem;
+  }
+  .project-info p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+  .project-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .feature-tag {
+    padding: 0.35rem 0.8rem;
+    background: var(--bg);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-light);
+    letter-spacing: 0.03em;
+  }
+  .project-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.8rem;
+    background: var(--noir);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+    align-self: flex-start;
+  }
+  .project-cta:hover { background: var(--accent); }
+  .project-cta svg { transition: transform 0.3s; }
+  .project-cta:hover svg { transform: translateX(3px); }
+
+  /* ── OFFRE ── */
+  .offre {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .offre-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .offre h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--noir);
+    margin-bottom: 2.5rem;
+  }
+  .offre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  .offre-card {
+    background: var(--white);
+    padding: 2.2rem;
+    border-top: 3px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .offre-card:hover { border-color: var(--accent); }
+  .offre-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--noir);
+    margin-bottom: 0.4rem;
+  }
+  .offre-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .offre-price span {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-light);
+  }
+  .offre-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-light);
+  }
+  .offre-note {
+    margin-top: 2rem;
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  /* ── PROCESS ── */
+  .process {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+  .process-label {
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+  }
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .process-step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 30px;
+  }
+  .step-content h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--noir);
+    margin-bottom: 0.3rem;
+  }
+  .step-content p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-light);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--noir);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+  .cta-section p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2rem;
+  }
+  .cta-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2.5rem;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .cta-phone:hover { background: var(--accent-hover); }
+  .cta-alt {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+  }
+  .cta-alt a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .hero { padding: 3.5rem 1.5rem 3rem; }
+    .stats { gap: 2rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-preview { min-height: 280px; }
+    .project-info { padding: 2rem; }
+    .offre-grid { grid-template-columns: 1fr; }
+    .process-step { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-name">Simon — Créateur de sites vitrines</p>
+  <h1>Un site professionnel pour votre commerce, livré en 7 jours</h1>
+  <p>Je crée des sites vitrines sur-mesure pour les commerces et artisans. Rapide, moderne, pensé pour vos clients. Voici quelques exemples.</p>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat">
+    <strong>7j</strong>
+    <span>Délai de livraison</span>
+  </div>
+  <div class="stat">
+    <strong>100%</strong>
+    <span>Responsive mobile</span>
+  </div>
+  <div class="stat">
+    <strong>0</strong>
+    <span>Abonnement obligatoire</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects">
+
+  <!-- Domaine viticole -->
+  <div class="project-card">
+    <div class="project-preview">
+      <div class="project-preview-overlay" onclick="window.open('domaine-viticole.html','_blank')"></div>
+      <iframe src="domaine-viticole.html" loading="lazy" title="Château Bellecroix"></iframe>
+    </div>
+    <div class="project-info">
+      <p class="project-tag">Domaine viticole</p>
+      <h2>Château Bellecroix</h2>
+      <p>Site vitrine pour un domaine viticole de l'Entre-deux-Mers. Présentation du domaine, des cuvées et des visites-dégustations.</p>
+      <div class="project-features">
+        <span class="feature-tag">One-page</span>
+        <span class="feature-tag">Responsive</span>
+        <span class="feature-tag">4 sections</span>
+        <span class="feature-tag">Navigation fluide</span>
+      </div>
+      <a href="domaine-viticole.html" target="_blank" class="project-cta">
+        Voir la démo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Gîte nature -->
+  <div class="project-card">
+    <div class="project-preview">
+      <div class="project-preview-overlay" onclick="window.open('gite-nature.html','_blank')"></div>
+      <iframe src="gite-nature.html" loading="lazy" title="Le Refuge des Bois"></iframe>
+    </div>
+    <div class="project-info">
+      <p class="project-tag">Gîte nature</p>
+      <h2>Le Refuge des Bois</h2>
+      <p>Site pour un gîte en pleine forêt. Présentation des chalets, galerie intérieure, avis clients et tarifs.</p>
+      <div class="project-features">
+        <span class="feature-tag">Multi-sections</span>
+        <span class="feature-tag">Responsive</span>
+        <span class="feature-tag">Tarifs intégrés</span>
+        <span class="feature-tag">Avis clients</span>
+      </div>
+      <a href="gite-nature.html" target="_blank" class="project-cta">
+        Voir la démo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Salon de coiffure -->
+  <div class="project-card">
+    <div class="project-preview">
+      <div class="project-preview-overlay" onclick="window.open('salon-coiffure.html','_blank')"></div>
+      <iframe src="salon-coiffure.html" loading="lazy" title="Atelier Noa"></iframe>
+    </div>
+    <div class="project-info">
+      <p class="project-tag">Salon de coiffure</p>
+      <h2>Atelier Noa</h2>
+      <p>Site pour un salon de coiffure & bien-être. Carte des prestations avec prix, présentation de l'équipe et prise de rendez-vous.</p>
+      <div class="project-features">
+        <span class="feature-tag">Multi-sections</span>
+        <span class="feature-tag">Responsive</span>
+        <span class="feature-tag">Carte des prix</span>
+        <span class="feature-tag">Avis clients</span>
+      </div>
+      <a href="salon-coiffure.html" target="_blank" class="project-cta">
+        Voir la démo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<!-- OFFRE -->
+<section class="offre">
+  <p class="offre-label">Formules</p>
+  <h2>Simple, transparent, sans surprise</h2>
+  <div class="offre-grid">
+    <div class="offre-card">
+      <h3>One-pager</h3>
+      <p class="offre-price">490€ <span>TTC</span></p>
+      <p>Tout sur une page : présentation, services, horaires, contact. Idéal pour les artisans et commerces de proximité.</p>
+    </div>
+    <div class="offre-card">
+      <h3>Site vitrine</h3>
+      <p class="offre-price">690€ <span>TTC</span></p>
+      <p>De 3 à 5 pages : accueil, prestations, galerie, à propos, contact. Pour les commerces qui veulent une présence complète.</p>
+    </div>
+  </div>
+  <p class="offre-note">Hébergement et nom de domaine inclus la première année. Maintenance optionnelle à 39€/mois.</p>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <p class="process-label">Comment ça se passe</p>
+  <div class="process-steps">
+    <div class="process-step">
+      <span class="step-num">1</span>
+      <div class="step-content">
+        <h4>On échange par téléphone</h4>
+        <p>15 minutes pour comprendre votre activité et ce dont vous avez besoin.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <span class="step-num">2</span>
+      <div class="step-content">
+        <h4>Vous m'envoyez vos éléments</h4>
+        <p>Photos, textes, horaires, logo — tout ce que vous voulez voir figurer sur votre site.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <span class="step-num">3</span>
+      <div class="step-content">
+        <h4>Je vous envoie une première version</h4>
+        <p>En quelques jours, vous recevez un lien pour voir votre site. Vous me faites vos retours.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <span class="step-num">4</span>
+      <div class="step-content">
+        <h4>Ajustements et mise en ligne</h4>
+        <p>On ajuste ensemble, puis je mets le site en ligne. Livré en 7 jours ouvrés max.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Intéressé ?</h2>
+  <p>Un coup de fil, je vous montre ce que je peux faire pour vous.</p>
+  <a href="tel:+33787023725" class="cta-phone">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    07 87 02 37 25
+  </a>
+  <span class="cta-alt">ou par email à <a href="mailto:scollie3@gmail.com">scollie3@gmail.com</a></span>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Exemples de démonstration — Photos d'illustration — © 2026 Simon</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Atelier Noa — Coiffure & Bien-être, Créon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #E8D5CC;
+    --blush-light: #F3EAE4;
+    --rose: #C09185;
+    --rose-dark: #A0746A;
+    --noir: #1E1B18;
+    --noir-soft: #2E2A26;
+    --charcoal: #3A3530;
+    --text: #4E4843;
+    --text-light: #8E867F;
+    --cream: #FAF8F5;
+    --white: #FEFDFB;
+    --gold-accent: #BFA88E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.3rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(254,253,251,0.96);
+    backdrop-filter: blur(12px);
+    padding: 0.85rem 2.5rem;
+    box-shadow: 0 1px 20px rgba(0,0,0,0.04);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  nav.scrolled .nav-logo { color: var(--noir); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav.scrolled .nav-links a { color: var(--text-light); }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-cta-btn {
+    padding: 0.5rem 1.3rem !important;
+    background: var(--rose) !important;
+    color: var(--white) !important;
+    font-size: 0.72rem !important;
+    border-radius: 0;
+    transition: background 0.3s !important;
+  }
+  .nav-cta-btn:hover { background: var(--rose-dark) !important; }
+
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+  .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--white); margin: 5px 0; transition: background 0.4s; }
+  nav.scrolled .nav-toggle span { background: var(--charcoal); }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    position: relative;
+  }
+  .hero-left {
+    flex: 1.1;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85) saturate(0.9);
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 60%, var(--noir) 100%);
+  }
+  .hero-right {
+    flex: 0.9;
+    background: var(--noir);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 4rem 4rem 3rem;
+    position: relative;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -1px;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 120px;
+    background: var(--rose);
+  }
+  .hero-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.7s ease 0.2s both;
+  }
+  .hero-right h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+    animation: fadeIn 0.7s ease 0.4s both;
+  }
+  .hero-right h1 em {
+    font-style: italic;
+    color: var(--blush);
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.7s ease 0.6s both;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    animation: fadeIn 0.7s ease 0.8s both;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: var(--rose);
+    color: var(--white);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--rose-dark); }
+  .btn-outline {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--rose); color: var(--rose); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── PRESTATIONS ── */
+  .prestations {
+    padding: 6rem 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .presta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+  .presta-header-left .label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.8rem;
+  }
+  .presta-header-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 400;
+    color: var(--noir);
+  }
+  .presta-header-right {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    max-width: 300px;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .presta-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .presta-cat h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--noir);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--blush);
+  }
+  .presta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.7rem 0;
+  }
+  .presta-item span:first-child {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .presta-item span:last-child {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--noir);
+  }
+  .presta-item .presta-detail {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── AMBIANCE ── */
+  .ambiance {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    height: 400px;
+  }
+  .ambiance-img {
+    overflow: hidden;
+    position: relative;
+  }
+  .ambiance-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s;
+    filter: saturate(0.85);
+  }
+  .ambiance-img:hover img { transform: scale(1.06); }
+  .ambiance-center {
+    background: var(--noir);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+  .ambiance-center .label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1rem;
+  }
+  .ambiance-center h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .ambiance-center p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    max-width: 260px;
+  }
+
+  /* ── L'EQUIPE ── */
+  .equipe {
+    padding: 6rem 2.5rem;
+    background: var(--white);
+  }
+  .equipe-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .equipe-img {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    position: relative;
+  }
+  .equipe-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.9);
+  }
+  .equipe-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(transparent, rgba(30,27,24,0.15));
+  }
+  .equipe-text .label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1rem;
+  }
+  .equipe-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--noir);
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+  }
+  .equipe-text p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+  }
+  .equipe-values {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .equipe-value {
+    padding: 1.2rem;
+    background: var(--cream);
+    flex: 1;
+    text-align: center;
+  }
+  .equipe-value strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--rose);
+    margin-bottom: 0.3rem;
+  }
+  .equipe-value span {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* ── AVIS ── */
+  .avis {
+    padding: 5rem 2.5rem;
+    background: var(--blush-light);
+    text-align: center;
+  }
+  .avis .label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.8rem;
+  }
+  .avis h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--noir);
+    margin-bottom: 3rem;
+  }
+  .avis-scroll {
+    display: flex;
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .avis-card {
+    background: var(--white);
+    padding: 2rem;
+    max-width: 300px;
+    text-align: left;
+    position: relative;
+  }
+  .avis-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--blush);
+    position: absolute;
+    top: 0.8rem;
+    left: 1.2rem;
+    line-height: 1;
+  }
+  .avis-card p {
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 1.2rem;
+    padding-top: 1.5rem;
+  }
+  .avis-card cite {
+    font-size: 0.78rem;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--noir);
+  }
+  .avis-card .avis-stars {
+    font-size: 0.7rem;
+    color: var(--gold-accent);
+    letter-spacing: 3px;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 6rem 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .contact-top {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .contact-top .label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.8rem;
+  }
+  .contact-top h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--noir);
+    margin-bottom: 0.6rem;
+  }
+  .contact-top p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .contact-card {
+    background: var(--white);
+    padding: 2rem;
+    text-align: center;
+    border-top: 3px solid var(--blush);
+  }
+  .contact-card svg { margin-bottom: 1rem; }
+  .contact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--noir);
+    margin-bottom: 0.8rem;
+  }
+  .contact-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-light);
+  }
+  .contact-card a {
+    color: var(--rose);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .contact-card a:hover { text-decoration: underline; }
+
+  .contact-note {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--noir);
+    color: var(--white);
+  }
+  .contact-note p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .contact-note a {
+    color: var(--rose);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--noir-soft);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  footer .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--blush);
+    margin-bottom: 0.3rem;
+  }
+  footer p {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(254,253,251,0.98);
+      padding: 1.5rem 2.5rem;
+      gap: 1rem;
+    }
+    .nav-links.open a { color: var(--text); }
+
+    .hero { flex-direction: column; height: auto; min-height: auto; }
+    .hero-left { height: 50vh; min-height: 300px; }
+    .hero-left::after { background: linear-gradient(180deg, transparent 60%, var(--noir) 100%); }
+    .hero-right { padding: 3rem 2rem; }
+
+    .presta-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .presta-header-right { text-align: left; }
+    .presta-categories { grid-template-columns: 1fr; }
+
+    .ambiance { grid-template-columns: 1fr; height: auto; }
+    .ambiance-img { height: 250px; }
+    .ambiance-center { padding: 3rem 2rem; }
+
+    .equipe-inner { grid-template-columns: 1fr; }
+    .equipe-img { max-height: 350px; }
+    .equipe-values { flex-direction: column; gap: 1rem; }
+
+    .avis-scroll { flex-direction: column; align-items: center; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Atelier Noa</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#prestations">Prestations</a></li>
+    <li><a href="#salon">Le Salon</a></li>
+    <li><a href="#equipe">L'Équipe</a></li>
+    <li><a href="#contact" class="nav-cta-btn">Prendre RDV</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1000&q=80" alt="Salon de coiffure">
+  </div>
+  <div class="hero-right">
+    <p class="hero-tag">Coiffure & Bien-être — Créon</p>
+    <h1>Votre style,<br>notre <em>signature</em></h1>
+    <p class="hero-desc">Un salon à taille humaine où chaque coupe est pensée pour vous. Couleurs végétales, produits naturels, attention sincère.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Prendre rendez-vous</a>
+      <a href="#prestations" class="btn-outline">Nos prestations</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRESTATIONS -->
+<section id="prestations" class="prestations">
+  <div class="presta-header">
+    <div class="presta-header-left">
+      <p class="label">Nos Prestations</p>
+      <h2>Des soins pensés<br>pour vous</h2>
+    </div>
+    <div class="presta-header-right">
+      Tous nos soins incluent un diagnostic capillaire personnalisé et un moment de détente au bac.
+    </div>
+  </div>
+  <div class="presta-categories">
+    <div class="presta-cat">
+      <h3>Coupes & Coiffages</h3>
+      <div class="presta-item">
+        <span>Coupe femme <span class="presta-detail">shampoing + coupe + coiffage</span></span>
+        <span>45€</span>
+      </div>
+      <div class="presta-item">
+        <span>Coupe homme <span class="presta-detail">shampoing + coupe + finition</span></span>
+        <span>28€</span>
+      </div>
+      <div class="presta-item">
+        <span>Coupe enfant <span class="presta-detail">moins de 12 ans</span></span>
+        <span>18€</span>
+      </div>
+      <div class="presta-item">
+        <span>Brushing</span>
+        <span>25€</span>
+      </div>
+      <div class="presta-item">
+        <span>Coiffage événement <span class="presta-detail">mariage, cérémonie</span></span>
+        <span>à partir de 65€</span>
+      </div>
+    </div>
+    <div class="presta-cat">
+      <h3>Couleurs & Soins</h3>
+      <div class="presta-item">
+        <span>Coloration végétale <span class="presta-detail">henné & plantes tinctoriales</span></span>
+        <span>55€</span>
+      </div>
+      <div class="presta-item">
+        <span>Coloration classique</span>
+        <span>48€</span>
+      </div>
+      <div class="presta-item">
+        <span>Balayage / Mèches</span>
+        <span>à partir de 60€</span>
+      </div>
+      <div class="presta-item">
+        <span>Soin profond <span class="presta-detail">kératine végétale, 30min</span></span>
+        <span>35€</span>
+      </div>
+      <div class="presta-item">
+        <span>Rituel détente <span class="presta-detail">soin + massage crânien</span></span>
+        <span>40€</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBIANCE -->
+<section id="salon" class="ambiance">
+  <div class="ambiance-img">
+    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80" alt="Intérieur salon" loading="lazy">
+  </div>
+  <div class="ambiance-center">
+    <p class="label">L'Ambiance</p>
+    <h2>Un lieu qui vous ressemble</h2>
+    <p>Matériaux bruts, lumière douce, musique choisie. On a voulu un endroit où l'on se sent bien dès la porte poussée.</p>
+  </div>
+  <div class="ambiance-img">
+    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Détail salon" loading="lazy">
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" class="equipe">
+  <div class="equipe-inner">
+    <div class="equipe-img">
+      <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80" alt="Noa, fondatrice" loading="lazy">
+    </div>
+    <div class="equipe-text">
+      <p class="label">L'Équipe</p>
+      <h2>Noa & son équipe,<br>passionnées et engagées</h2>
+      <p>Après 12 ans dans des salons parisiens, Noa a ouvert son atelier à Créon en 2020 avec une conviction : la coiffure est un acte de soin, pas seulement d'esthétique.</p>
+      <p>Aujourd'hui, avec Léa et Camille, elles forment une équipe soudée, formée aux techniques les plus actuelles et aux colorations végétales.</p>
+      <div class="equipe-values">
+        <div class="equipe-value">
+          <strong>12</strong>
+          <span>ans d'exp.</span>
+        </div>
+        <div class="equipe-value">
+          <strong>3</strong>
+          <span>coiffeuses</span>
+        </div>
+        <div class="equipe-value">
+          <strong>100%</strong>
+          <span>produits clean</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="avis">
+  <p class="label">Avis Clients</p>
+  <h2>Elles en parlent mieux que nous</h2>
+  <div class="avis-scroll">
+    <div class="avis-card">
+      <p>Enfin un salon où l'on prend le temps de comprendre ce que je veux. Ma coloration végétale est sublime, et Noa est d'un professionnalisme rare.</p>
+      <cite>Sandrine L.</cite>
+      <span class="avis-stars">★★★★★</span>
+    </div>
+    <div class="avis-card">
+      <p>Ambiance super zen, on se sent comme chez une amie. La coupe est toujours parfaite et le massage crânien au bac, un vrai bonheur.</p>
+      <cite>Marie-Claire D.</cite>
+      <span class="avis-stars">★★★★★</span>
+    </div>
+    <div class="avis-card">
+      <p>J'emmène mes deux filles depuis l'ouverture. Léa est adorable avec elles, et les prix sont très corrects pour la qualité. Je recommande à 100%.</p>
+      <cite>Aurélie P.</cite>
+      <span class="avis-stars">★★★★★</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-top">
+    <p class="label">Contact & Rendez-vous</p>
+    <h2>On vous attend</h2>
+    <p>Sur rendez-vous ou en semaine sans réservation, selon les disponibilités.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C09185" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <h3>Adresse</h3>
+      <p>17 Rue du Commerce<br>33670 Créon</p>
+    </div>
+    <div class="contact-card">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C09185" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      <h3>Téléphone</h3>
+      <p><a href="tel:+33556231500">05 56 23 15 00</a><br>Rendez-vous & conseils</p>
+    </div>
+    <div class="contact-card">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C09185" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <h3>Horaires</h3>
+      <p>Mar — Ven : 9h – 19h<br>Samedi : 9h – 17h</p>
+    </div>
+  </div>
+  <div class="contact-note">
+    <p>Envie de prendre rendez-vous en ligne ? Appelez-nous au <a href="tel:+33556231500">05 56 23 15 00</a> ou envoyez un SMS. Réponse rapide garantie.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Atelier Noa</p>
+  <p>Coiffure & Bien-être — Créon, Gironde</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.presta-cat, .equipe-inner, .avis-card, .contact-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(22px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
