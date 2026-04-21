@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Jardins Laroque — Paysagiste en Gironde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --leaf: #4A6741;
+    --leaf-dark: #354A30;
+    --leaf-light: #7B9E72;
+    --earth: #8B7355;
+    --earth-light: #A89279;
+    --sand: #F5F0E6;
+    --sand-warm: #EDE5D6;
+    --bark: #2E2418;
+    --text: #3D3530;
+    --text-light: #7A7067;
+    --white: #FDFCF8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Raleway', sans-serif; color: var(--text); background: var(--sand); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.4s;
+  }
+  nav.scrolled { background: rgba(253,252,248,0.96); backdrop-filter: blur(12px); padding: 0.85rem 2.5rem; box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--white); text-decoration: none; letter-spacing: 0.04em; transition: color 0.4s; }
+  nav.scrolled .nav-logo { color: var(--leaf-dark); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.76rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; }
+  nav.scrolled .nav-links a { color: var(--text-light); }
+  .nav-links a:hover { color: var(--leaf-light); }
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+  .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--white); margin: 5px 0; transition: background 0.4s; }
+  nav.scrolled .nav-toggle span { background: var(--bark); }
+
+  /* HERO */
+  .hero {
+    height: 100vh; min-height: 600px; position: relative;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(53,74,48,0.6) 0%, rgba(46,36,24,0.5) 100%),
+      url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80') center/cover no-repeat;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; padding: 0 2rem; }
+  .hero-badge {
+    display: inline-block; padding: 0.4rem 1.5rem; border: 1px solid rgba(123,158,114,0.5);
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf-light);
+    margin-bottom: 1.5rem; animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 400; color: var(--white);
+    line-height: 1.15; margin-bottom: 1rem; animation: fadeUp 0.8s ease 0.4s both;
+  }
+  .hero h1 em { font-style: italic; color: var(--leaf-light); }
+  .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; animation: fadeUp 0.8s ease 0.6s both; }
+  .hero-cta {
+    display: inline-block; padding: 0.95rem 2.5rem; background: var(--leaf); color: var(--white);
+    font-size: 0.76rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s; animation: fadeUp 0.8s ease 0.8s both;
+  }
+  .hero-cta:hover { background: var(--leaf-dark); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* INTRO */
+  .intro { display: grid; grid-template-columns: 1fr 1fr; max-width: 1050px; margin: 0 auto; padding: 6rem 2.5rem; gap: 4rem; align-items: center; }
+  .intro-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 1rem; }
+  .intro h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 400; color: var(--bark); line-height: 1.2; margin-bottom: 1.5rem; }
+  .intro p { font-size: 0.95rem; line-height: 1.85; color: var(--text-light); margin-bottom: 1rem; }
+  .intro-stats { display: flex; gap: 2.5rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(74,103,65,0.2); }
+  .intro-stat strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; color: var(--leaf); }
+  .intro-stat span { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); }
+  .intro-visual { position: relative; }
+  .intro-visual-main { width: 100%; height: 400px; object-fit: cover; }
+  .intro-visual-float {
+    position: absolute; bottom: -30px; right: -20px; width: 180px; height: 180px; object-fit: cover;
+    border: 4px solid var(--sand); box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
+
+  /* SERVICES */
+  .prestations { padding: 5rem 2.5rem; background: var(--white); }
+  .presta-header { text-align: center; max-width: 550px; margin: 0 auto 3.5rem; }
+  .presta-header .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 0.8rem; }
+  .presta-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 400; color: var(--bark); }
+  .presta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+  .presta-card { padding: 2rem; text-align: center; border: 1px solid var(--sand-warm); transition: all 0.3s; }
+  .presta-card:hover { border-color: var(--leaf-light); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.04); }
+  .presta-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(74,103,65,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; }
+  .presta-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; color: var(--bark); margin-bottom: 0.6rem; }
+  .presta-card p { font-size: 0.85rem; line-height: 1.7; color: var(--text-light); }
+
+  /* RÉALISATIONS */
+  .realisations { padding: 5rem 2.5rem; }
+  .real-header { text-align: center; max-width: 550px; margin: 0 auto 3rem; }
+  .real-header .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 0.8rem; }
+  .real-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 400; color: var(--bark); }
+  .real-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 1000px; margin: 0 auto; }
+  .real-item { position: relative; overflow: hidden; height: 260px; }
+  .real-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; filter: saturate(0.9); }
+  .real-item:hover img { transform: scale(1.05); }
+  .real-item-overlay {
+    position: absolute; inset: 0; background: linear-gradient(transparent 50%, rgba(46,36,24,0.7));
+    display: flex; align-items: flex-end; padding: 1.2rem;
+  }
+  .real-item-overlay span { font-size: 0.82rem; font-weight: 500; color: var(--white); letter-spacing: 0.03em; }
+
+  /* AVIS */
+  .avis { padding: 5rem 2.5rem; background: var(--leaf-dark); text-align: center; color: var(--white); }
+  .avis .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf-light); margin-bottom: 0.8rem; }
+  .avis h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; margin-bottom: 3rem; }
+  .avis-row { display: flex; gap: 1.5rem; max-width: 1000px; margin: 0 auto; justify-content: center; flex-wrap: wrap; }
+  .avis-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; max-width: 300px; text-align: left; }
+  .avis-card .stars { color: var(--earth-light); font-size: 0.82rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
+  .avis-card blockquote { font-size: 0.88rem; font-style: italic; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 1rem; }
+  .avis-card cite { font-size: 0.76rem; font-style: normal; font-weight: 600; color: var(--leaf-light); }
+
+  /* CONTACT */
+  .contact { padding: 6rem 2.5rem; }
+  .contact-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-left .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 1rem; }
+  .contact-left h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--bark); margin-bottom: 1.5rem; }
+  .contact-left p { font-size: 0.92rem; line-height: 2; color: var(--text-light); }
+  .contact-left a { color: var(--leaf); text-decoration: none; font-weight: 600; }
+  .contact-left a:hover { text-decoration: underline; }
+  .contact-right .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 1rem; }
+  .contact-right h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--bark); margin-bottom: 1rem; }
+  .zone-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .zone-list li { padding: 0.35rem 0.8rem; background: var(--white); font-size: 0.78rem; color: var(--text-light); border: 1px solid var(--sand-warm); }
+  .contact-cta {
+    display: inline-flex; align-items: center; gap: 0.8rem; margin-top: 2rem;
+    padding: 0.95rem 2.2rem; background: var(--leaf); color: var(--white);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s;
+  }
+  .contact-cta:hover { background: var(--leaf-dark); }
+
+  /* FOOTER */
+  footer { background: var(--bark); padding: 2.5rem 2rem; text-align: center; }
+  footer .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--leaf-light); margin-bottom: 0.3rem; }
+  footer p { font-size: 0.7rem; color: rgba(255,255,255,0.2); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(253,252,248,0.98); padding: 1.5rem 2.5rem; gap: 1rem; }
+    .nav-links.open a { color: var(--text); }
+    .intro { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+    .intro-visual-float { display: none; }
+    .presta-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .real-grid { grid-template-columns: 1fr; }
+    .avis-row { flex-direction: column; align-items: center; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Jardins Laroque</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#prestations">Prestations</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Paysagiste en Gironde</span>
+    <h1>Créons ensemble<br>votre jardin <em>idéal</em></h1>
+    <p class="hero-sub">Conception, création et entretien d'espaces verts. Un jardin qui vous ressemble, pensé pour durer.</p>
+    <a href="#contact" class="hero-cta">Demander un devis gratuit</a>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div>
+    <p class="intro-label">Le Savoir-Faire</p>
+    <h2>Un paysagiste passionné,<br>à votre écoute</h2>
+    <p>Julien Laroque exerce le métier de paysagiste depuis 15 ans en Gironde. De l'esquisse initiale à la dernière plantation, chaque projet est accompagné avec soin et précision.</p>
+    <p>Jardins de particuliers, terrasses, allées, clôtures végétales — chaque espace extérieur mérite une attention sur-mesure. On travaille ensemble, on écoute vos envies, on vous conseille sur les essences adaptées au sol et au climat.</p>
+    <div class="intro-stats">
+      <div class="intro-stat">
+        <strong>15</strong>
+        <span>ans d'expérience</span>
+      </div>
+      <div class="intro-stat">
+        <strong>200+</strong>
+        <span>jardins créés</span>
+      </div>
+      <div class="intro-stat">
+        <strong>100%</strong>
+        <span>sur devis gratuit</span>
+      </div>
+    </div>
+  </div>
+  <div class="intro-visual">
+    <img class="intro-visual-main" src="https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&q=80" alt="Jardin paysager" loading="lazy">
+    <img class="intro-visual-float" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" alt="Plantation" loading="lazy">
+  </div>
+</section>
+
+<!-- PRESTATIONS -->
+<section id="prestations" class="prestations">
+  <div class="presta-header">
+    <p class="label">Nos Prestations</p>
+    <h2>De la conception à l'entretien</h2>
+  </div>
+  <div class="presta-grid">
+    <div class="presta-card">
+      <div class="presta-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <h3>Conception de jardins</h3>
+      <p>Étude du terrain, plan d'aménagement, choix des végétaux. Un projet sur-mesure qui respecte votre budget.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Création & plantation</h3>
+      <p>Terrassement, engazonnement, plantations, arrosage intégré. Votre jardin prend vie.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3>Entretien régulier</h3>
+      <p>Tonte, taille des haies, désherbage, soins saisonniers. On prend soin de votre jardin toute l'année.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <h3>Terrasses & allées</h3>
+      <p>Dallage, pavage, bois composite, graviers. Des aménagements durables et esthétiques.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>Clôtures & portails</h3>
+      <p>Clôtures bois, aluminium, grillage, haies vives. Délimiter avec style.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h3>Élagage & abattage</h3>
+      <p>Taille d'arbres, élagage en hauteur, abattage sécurisé. Intervention dans les règles de l'art.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section id="realisations" class="realisations">
+  <div class="real-header">
+    <p class="label">Réalisations</p>
+    <h2>Quelques projets récents</h2>
+  </div>
+  <div class="real-grid">
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1598902108854-d1446636a559?w=600&q=80" alt="Jardin contemporain" loading="lazy">
+      <div class="real-item-overlay"><span>Jardin contemporain — Créon</span></div>
+    </div>
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1584479898061-15742e14f50d?w=600&q=80" alt="Terrasse bois" loading="lazy">
+      <div class="real-item-overlay"><span>Terrasse bois — Sadirac</span></div>
+    </div>
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?w=600&q=80" alt="Aménagement complet" loading="lazy">
+      <div class="real-item-overlay"><span>Aménagement complet — Targon</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="avis">
+  <p class="label">Avis Clients</p>
+  <h2>Ils nous ont fait confiance</h2>
+  <div class="avis-row">
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« Julien a transformé notre terrain en vrac en un jardin magnifique. Il a su écouter nos envies et nous conseiller sur les plantes adaptées. Résultat superbe. »</blockquote>
+      <cite>— Marie & Pierre L., Créon</cite>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« Travail soigné, chantier propre, délais respectés. La terrasse est exactement ce qu'on voulait. On recommande sans hésiter. »</blockquote>
+      <cite>— Frédéric D., Sadirac</cite>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« On fait appel à Jardins Laroque pour l'entretien depuis 3 ans. Toujours ponctuel, toujours impeccable. Notre jardin n'a jamais été aussi beau. »</blockquote>
+      <cite>— Catherine M., Cadillac</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="label">Contact</p>
+      <h2>Parlons de votre projet</h2>
+      <p>
+        Jardins Laroque<br>
+        Julien Laroque — Paysagiste<br>
+        33670 Créon, Gironde<br><br>
+        <a href="tel:+33607001200">06 07 00 12 00</a><br>
+        <a href="mailto:contact@jardinslaroque.fr">contact@jardinslaroque.fr</a><br><br>
+        Devis gratuit sous 48h.<br>
+        <em style="color: var(--leaf-light);">Déplacement offert dans un rayon de 30 km.</em>
+      </p>
+    </div>
+    <div class="contact-right">
+      <p class="label">Zone d'intervention</p>
+      <h3>Gironde & alentours</h3>
+      <ul class="zone-list">
+        <li>Créon</li>
+        <li>Sadirac</li>
+        <li>Targon</li>
+        <li>Cadillac</li>
+        <li>Langon</li>
+        <li>Libourne</li>
+        <li>Bordeaux Est</li>
+        <li>Entre-deux-Mers</li>
+      </ul>
+      <a href="tel:+33607001200" class="contact-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Appeler maintenant
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-name">Jardins Laroque</p>
+  <p>Paysagiste — Créon, Entre-deux-Mers, Gironde</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.intro, .presta-card, .real-item, .avis-card, .contact-inner').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

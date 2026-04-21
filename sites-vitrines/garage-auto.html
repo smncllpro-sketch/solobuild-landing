@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Garage Ducasse — Mécanique & Entretien, Créon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2838;
+    --navy-light: #263548;
+    --steel: #4A5B6E;
+    --orange: #E8712A;
+    --orange-hover: #D4621F;
+    --orange-light: #F4A261;
+    --concrete: #F0EDED;
+    --concrete-dark: #E2DEDA;
+    --text: #2E3440;
+    --text-light: #6B7280;
+    --white: #FEFEFE;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Outfit', sans-serif; color: var(--text); background: var(--concrete); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
+    background: var(--navy); box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  }
+  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta { padding: 0.55rem 1.3rem; background: var(--orange); color: var(--white) !important; font-weight: 600 !important; transition: background 0.3s !important; }
+  .nav-cta:hover { background: var(--orange-hover) !important; }
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--white); margin: 5px 0; }
+
+  /* HERO */
+  .hero {
+    padding: 10rem 2.5rem 6rem; background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+    background: linear-gradient(transparent, var(--concrete));
+  }
+  .hero-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
+  .hero-tag {
+    display: inline-block; padding: 0.35rem 1rem; background: rgba(232,113,42,0.15); border: 1px solid rgba(232,113,42,0.3);
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 1.2rem; animation: fadeIn 0.7s ease 0.2s both;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -0.02em; animation: fadeIn 0.7s ease 0.3s both;
+  }
+  .hero h1 em { font-style: normal; color: var(--orange); }
+  .hero-desc { font-size: 1rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.6); max-width: 440px; margin-bottom: 2rem; animation: fadeIn 0.7s ease 0.5s both; }
+  .hero-buttons { display: flex; gap: 1rem; animation: fadeIn 0.7s ease 0.6s both; flex-wrap: wrap; }
+  .btn-orange { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2rem; background: var(--orange); color: var(--white); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.3s; }
+  .btn-orange:hover { background: var(--orange-hover); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2rem; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+  .hero-stats { display: flex; flex-direction: column; gap: 1.5rem; animation: fadeIn 0.7s ease 0.7s both; }
+  .hero-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .hero-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--orange); line-height: 1; }
+  .hero-stat-text { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SERVICES */
+  .services { padding: 5rem 2.5rem; max-width: 1000px; margin: 0 auto; }
+  .section-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--navy); margin-bottom: 2.5rem; letter-spacing: -0.02em; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card { background: var(--white); padding: 2rem; border-bottom: 3px solid transparent; transition: all 0.3s; }
+  .service-card:hover { border-bottom-color: var(--orange); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+  .service-icon { width: 44px; height: 44px; background: rgba(232,113,42,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+  .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .service-card p { font-size: 0.85rem; line-height: 1.65; color: var(--text-light); }
+
+  /* ENGAGEMENT */
+  .engagement { padding: 5rem 2.5rem; background: var(--navy); color: var(--white); text-align: center; }
+  .engagement .section-tag { color: var(--orange-light); }
+  .engagement .section-title { color: var(--white); }
+  .eng-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
+  .eng-item { padding: 1.5rem 1rem; }
+  .eng-num { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--orange); margin-bottom: 0.3rem; }
+  .eng-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+  /* AVIS */
+  .avis { padding: 5rem 2.5rem; max-width: 1000px; margin: 0 auto; }
+  .avis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .avis-card { background: var(--white); padding: 1.8rem; border-left: 3px solid var(--orange); }
+  .avis-stars { color: var(--orange); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
+  .avis-card blockquote { font-size: 0.88rem; font-style: italic; line-height: 1.7; color: var(--text-light); margin-bottom: 1rem; }
+  .avis-card cite { font-size: 0.76rem; font-style: normal; font-weight: 600; color: var(--navy); }
+
+  /* CONTACT */
+  .contact { padding: 5rem 2.5rem; background: var(--concrete-dark); }
+  .contact-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-left .section-tag { }
+  .contact-left h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--navy); margin-bottom: 1.5rem; }
+  .contact-left p { font-size: 0.92rem; line-height: 2; color: var(--text-light); }
+  .contact-left a { color: var(--orange); text-decoration: none; font-weight: 600; }
+  .contact-left a:hover { text-decoration: underline; }
+  .contact-right { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-right h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .horaire-row { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid rgba(74,91,110,0.12); font-size: 0.88rem; }
+  .horaire-row span:first-child { color: var(--text-light); }
+  .horaire-row span:last-child { font-weight: 600; color: var(--navy); }
+  .horaire-closed span:last-child { color: var(--orange); }
+
+  /* FOOTER */
+  footer { background: var(--navy); padding: 2.5rem 2rem; text-align: center; }
+  footer .footer-name { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem; }
+  footer p { font-size: 0.7rem; color: rgba(255,255,255,0.2); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2.5rem; gap: 1rem; }
+    .hero { padding: 8rem 1.5rem 5rem; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; }
+    .hero-stat { flex: 1; min-width: 140px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .eng-grid { grid-template-columns: 1fr 1fr; }
+    .avis-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Garage <span>Ducasse</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Horaires</a></li>
+    <li><a href="tel:+33556231800" class="nav-cta">05 56 23 18 00</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <span class="hero-tag">Garage automobile — Créon, Gironde</span>
+      <h1>Votre garagiste<br>de <em>confiance</em><br>depuis 1998</h1>
+      <p class="hero-desc">Entretien, réparation, diagnostic — toutes marques. Un service honnête, des prix transparents, et votre voiture prête quand on vous l'a dit.</p>
+      <div class="hero-buttons">
+        <a href="tel:+33556231800" class="btn-orange">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Appeler
+        </a>
+        <a href="#services" class="btn-ghost">Nos services</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">26</span>
+        <span class="hero-stat-text">années<br>d'expérience</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">4.7</span>
+        <span class="hero-stat-text">étoiles sur<br>Google (120+ avis)</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-text">toutes marques<br>toutes réparations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+  <p class="section-tag">Nos Services</p>
+  <h2 class="section-title">Tout pour votre véhicule, au même endroit</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
+      </div>
+      <h3>Entretien courant</h3>
+      <p>Vidange, filtres, plaquettes de frein, courroie de distribution. On suit le carnet d'entretien constructeur.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>Réparation mécanique</h3>
+      <p>Moteur, boîte de vitesses, embrayage, suspension. Diagnostic précis, réparation fiable.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Diagnostic électronique</h3>
+      <p>Valise de diagnostic toutes marques. Voyant moteur, ABS, airbag — on trouve la panne.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3>Contrôle technique</h3>
+      <p>Pré-contrôle et passage du contrôle technique. On vous prépare pour passer sans contre-visite.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <h3>Pneumatiques</h3>
+      <p>Vente, montage, équilibrage et géométrie. Pneus été, hiver et 4 saisons, toutes dimensions.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Climatisation</h3>
+      <p>Recharge, diagnostic de fuite, remplacement du compresseur. Bilan clim complet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT -->
+<section class="engagement">
+  <p class="section-tag">Nos Engagements</p>
+  <h2 class="section-title">Ce qu'on vous garantit</h2>
+  <div class="eng-grid">
+    <div class="eng-item">
+      <div class="eng-num">0€</div>
+      <div class="eng-label">Devis gratuit<br>et sans engagement</div>
+    </div>
+    <div class="eng-item">
+      <div class="eng-num">24h</div>
+      <div class="eng-label">Intervention<br>sous 24h en général</div>
+    </div>
+    <div class="eng-item">
+      <div class="eng-num">100%</div>
+      <div class="eng-label">Pièces d'origine<br>ou équivalent qualité</div>
+    </div>
+    <div class="eng-item">
+      <div class="eng-num">0</div>
+      <div class="eng-label">Surprise<br>sur la facture</div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="avis">
+  <p class="section-tag">Avis Clients</p>
+  <h2 class="section-title">Ce qu'ils disent de nous</h2>
+  <div class="avis-grid">
+    <div class="avis-card">
+      <div class="avis-stars">★★★★★</div>
+      <blockquote>« Honnête et compétent. Mon embrayage a été changé en une journée, prix annoncé = prix payé. Je recommande les yeux fermés. »</blockquote>
+      <cite>— Laurent M.</cite>
+    </div>
+    <div class="avis-card">
+      <div class="avis-stars">★★★★★</div>
+      <blockquote>« Garage familial, on est bien reçu, ils prennent le temps d'expliquer. Ma voiture n'a jamais aussi bien tourné depuis la vidange. »</blockquote>
+      <cite>— Sandrine T.</cite>
+    </div>
+    <div class="avis-card">
+      <div class="avis-stars">★★★★★</div>
+      <blockquote>« Troisième voiture que je leur confie. Toujours le même sérieux, toujours dans les délais. C'est rare de trouver un garagiste de confiance. »</blockquote>
+      <cite>— Philippe D.</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="section-tag">Contact</p>
+      <h2>Passez nous voir</h2>
+      <p>
+        Garage Ducasse<br>
+        Zone Artisanale des Vignes<br>
+        33670 Créon<br><br>
+        <a href="tel:+33556231800">05 56 23 18 00</a><br><br>
+        Sans rendez-vous pour l'entretien courant.<br>
+        Sur rendez-vous pour les réparations.
+      </p>
+    </div>
+    <div class="contact-right">
+      <h3>Horaires d'ouverture</h3>
+      <div class="horaire-row"><span>Lundi</span><span>8h — 12h / 14h — 18h</span></div>
+      <div class="horaire-row"><span>Mardi</span><span>8h — 12h / 14h — 18h</span></div>
+      <div class="horaire-row"><span>Mercredi</span><span>8h — 12h / 14h — 18h</span></div>
+      <div class="horaire-row"><span>Jeudi</span><span>8h — 12h / 14h — 18h</span></div>
+      <div class="horaire-row"><span>Vendredi</span><span>8h — 12h / 14h — 18h</span></div>
+      <div class="horaire-row"><span>Samedi</span><span>8h — 12h</span></div>
+      <div class="horaire-row horaire-closed"><span>Dimanche</span><span>Fermé</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-name">Garage Ducasse — Créon, Gironde</p>
+  <p>Mécanique · Entretien · Diagnostic · Toutes marques depuis 1998</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.service-card, .eng-item, .avis-card, .contact-inner').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
