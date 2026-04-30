@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Élagueur Paysagiste — Élagage, Aménagement & Entretien, Créon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --leaf: #4A6741;
+    --leaf-dark: #354A30;
+    --leaf-light: #7B9E72;
+    --earth: #8B7355;
+    --earth-light: #A89279;
+    --sand: #F5F0E6;
+    --sand-warm: #EDE5D6;
+    --bark: #2E2418;
+    --text: #3D3530;
+    --text-light: #7A7067;
+    --white: #FDFCF8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Raleway', sans-serif; color: var(--text); background: var(--sand); overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.4s; }
+  nav.scrolled { background: rgba(253,252,248,0.96); backdrop-filter: blur(12px); padding: 0.85rem 2.5rem; box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--white); text-decoration: none; letter-spacing: 0.04em; transition: color 0.4s; }
+  nav.scrolled .nav-logo { color: var(--leaf-dark); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.76rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; }
+  nav.scrolled .nav-links a { color: var(--text-light); }
+  .nav-links a:hover { color: var(--leaf-light); }
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+  .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--white); margin: 5px 0; transition: background 0.4s; }
+  nav.scrolled .nav-toggle span { background: var(--bark); }
+
+  .hero { height: 100vh; min-height: 600px; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(53,74,48,0.6) 0%, rgba(46,36,24,0.5) 100%), url('https://images.unsplash.com/photo-1558904541-efa843a96f01?w=1600&q=80') center/cover no-repeat; }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; padding: 0 2rem; }
+  .hero-badge { display: inline-block; padding: 0.4rem 1.5rem; border: 1px solid rgba(123,158,114,0.5); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf-light); margin-bottom: 1.5rem; animation: fadeUp 0.8s ease 0.2s both; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 400; color: var(--white); line-height: 1.15; margin-bottom: 1rem; animation: fadeUp 0.8s ease 0.4s both; }
+  .hero h1 em { font-style: italic; color: var(--leaf-light); }
+  .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; animation: fadeUp 0.8s ease 0.6s both; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.8rem; padding: 0.95rem 2.5rem; background: var(--leaf); color: var(--white); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.3s; animation: fadeUp 0.8s ease 0.8s both; }
+  .hero-cta:hover { background: var(--leaf-dark); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .intro { display: grid; grid-template-columns: 1fr 1fr; max-width: 1050px; margin: 0 auto; padding: 6rem 2.5rem; gap: 4rem; align-items: center; }
+  .intro-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 1rem; }
+  .intro h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 400; color: var(--bark); line-height: 1.2; margin-bottom: 1.5rem; }
+  .intro p { font-size: 0.95rem; line-height: 1.85; color: var(--text-light); margin-bottom: 1rem; }
+  .intro-stats { display: flex; gap: 2.5rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(74,103,65,0.2); }
+  .intro-stat strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; color: var(--leaf); }
+  .intro-stat span { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); }
+  .intro-visual { position: relative; }
+  .intro-visual-main { width: 100%; height: 400px; object-fit: cover; }
+
+  .prestations { padding: 5rem 2.5rem; background: var(--white); }
+  .presta-header { text-align: center; max-width: 550px; margin: 0 auto 3.5rem; }
+  .presta-header .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 0.8rem; }
+  .presta-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 400; color: var(--bark); }
+  .presta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+  .presta-card { padding: 2rem; text-align: center; border: 1px solid var(--sand-warm); transition: all 0.3s; }
+  .presta-card:hover { border-color: var(--leaf-light); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.04); }
+  .presta-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(74,103,65,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; }
+  .presta-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; color: var(--bark); margin-bottom: 0.6rem; }
+  .presta-card p { font-size: 0.85rem; line-height: 1.7; color: var(--text-light); }
+
+  .avis { padding: 5rem 2.5rem; background: var(--leaf-dark); text-align: center; color: var(--white); }
+  .avis .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf-light); margin-bottom: 0.8rem; }
+  .avis h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; margin-bottom: 1rem; }
+  .avis .avis-note { font-size: 1.1rem; color: var(--leaf-light); margin-bottom: 3rem; }
+  .avis-row { display: flex; gap: 1.5rem; max-width: 800px; margin: 0 auto; justify-content: center; flex-wrap: wrap; }
+  .avis-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; max-width: 360px; text-align: left; flex: 1; }
+  .avis-card .stars { color: var(--earth-light); font-size: 0.82rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
+  .avis-card blockquote { font-size: 0.88rem; font-style: italic; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 1rem; }
+  .avis-card cite { font-size: 0.76rem; font-style: normal; font-weight: 600; color: var(--leaf-light); }
+  .avis-card .avis-services { margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .avis-card .avis-services span { font-size: 0.68rem; padding: 0.2rem 0.5rem; background: rgba(123,158,114,0.15); color: var(--leaf-light); letter-spacing: 0.03em; }
+
+  .contact { padding: 6rem 2.5rem; }
+  .contact-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-left .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 1rem; }
+  .contact-left h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--bark); margin-bottom: 1.5rem; }
+  .contact-left p { font-size: 0.92rem; line-height: 2; color: var(--text-light); }
+  .contact-left a { color: var(--leaf); text-decoration: none; font-weight: 600; }
+  .contact-left a:hover { text-decoration: underline; }
+  .contact-right .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 1rem; }
+  .contact-right h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--bark); margin-bottom: 1rem; }
+  .zone-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .zone-list li { padding: 0.35rem 0.8rem; background: var(--white); font-size: 0.78rem; color: var(--text-light); border: 1px solid var(--sand-warm); }
+  .contact-cta { display: inline-flex; align-items: center; gap: 0.8rem; margin-top: 2rem; padding: 0.95rem 2.2rem; background: var(--leaf); color: var(--white); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.3s; }
+  .contact-cta:hover { background: var(--leaf-dark); }
+
+  footer { background: var(--bark); padding: 2.5rem 2rem; text-align: center; }
+  footer .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--leaf-light); margin-bottom: 0.3rem; }
+  footer p { font-size: 0.7rem; color: rgba(255,255,255,0.2); }
+  footer .footer-illus { margin-top: 0.8rem; font-size: 0.65rem; color: rgba(255,255,255,0.12); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(253,252,248,0.98); padding: 1.5rem 2.5rem; gap: 1rem; }
+    .nav-links.open a { color: var(--text); }
+    .intro { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+    .presta-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .avis-row { flex-direction: column; align-items: center; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Élagueur Paysagiste</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#prestations">Prestations</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Élagage & Paysage — Créon, Gironde</span>
+    <h1>Votre espace vert<br>entre de bonnes <em>mains</em></h1>
+    <p class="hero-sub">Élagage, aménagement de jardins et entretien de pelouses à Créon et alentours. Professionnel, réactif, prix justes.</p>
+    <a href="tel:+33785017861" class="hero-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      07 85 01 78 61
+    </a>
+  </div>
+</section>
+
+<section class="intro">
+  <div>
+    <p class="intro-label">Le Savoir-Faire</p>
+    <h2>Un paysagiste réactif<br>et professionnel</h2>
+    <p>Basé à Créon, Élagueur Paysagiste intervient sur l'ensemble de l'Entre-deux-Mers pour tous vos travaux d'élagage, d'aménagement de jardins et d'entretien d'espaces verts.</p>
+    <p>Du petit jardin de particulier aux espaces plus grands, chaque intervention est réalisée avec soin, dans le respect des végétaux et de votre budget.</p>
+    <div class="intro-stats">
+      <div class="intro-stat">
+        <strong>5.0★</strong>
+        <span>Note Google</span>
+      </div>
+      <div class="intro-stat">
+        <strong>100%</strong>
+        <span>Devis gratuit</span>
+      </div>
+      <div class="intro-stat">
+        <strong>30km</strong>
+        <span>Rayon d'intervention</span>
+      </div>
+    </div>
+  </div>
+  <div class="intro-visual">
+    <img class="intro-visual-main" src="https://images.unsplash.com/photo-1598902108854-d1446636a559?w=800&q=80" alt="Aménagement paysager" loading="lazy">
+  </div>
+</section>
+
+<section id="prestations" class="prestations">
+  <div class="presta-header">
+    <p class="label">Nos Prestations</p>
+    <h2>Élagage, création et entretien</h2>
+  </div>
+  <div class="presta-grid">
+    <div class="presta-card">
+      <div class="presta-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3>Élagage & abattage</h3>
+      <p>Taille d'arbres, élagage en hauteur, abattage sécurisé. Intervention dans les règles de l'art avec évacuation des déchets.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <h3>Aménagement de jardins</h3>
+      <p>Création de massifs, plantations, délimitation gravier et pelouse, mise en valeur de vos extérieurs.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <h3>Entretien régulier</h3>
+      <p>Tonte de pelouses, taille de haies et arbustes, désherbage, ramassage des déchets verts. Entretien ponctuel ou à l'année.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <h3>Clôtures & délimitations</h3>
+      <p>Pose de clôtures, saignées de séparation, bordures. Délimiter vos espaces avec soin.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <h3>Dessouchage</h3>
+      <p>Retrait de souches après abattage, préparation du terrain pour réaménagement ou replantation.</p>
+    </div>
+    <div class="presta-card">
+      <div class="presta-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6741" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+      <h3>Conseil & devis</h3>
+      <p>Déplacement et devis gratuits. On évalue ensemble vos besoins et on vous conseille la meilleure solution.</p>
+    </div>
+  </div>
+</section>
+
+<section id="avis" class="avis">
+  <p class="label">Avis Clients Google</p>
+  <h2>Ils nous ont fait confiance</h2>
+  <p class="avis-note">★★★★★ — 5.0 sur Google</p>
+  <div class="avis-row">
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« Professionnel, réactif, sympa, le résultat est là. Prix raisonnable pour les travaux effectués sur un jardin de 200 m² : tonte, taille de haies et arbustes, délimitation par une saignée de deux parties gravier et pelouse nette et propre, désherbage et ramassage des rejets de jardin. On recommande cette entreprise sans souci ! »</blockquote>
+      <cite>— Mel</cite>
+      <div class="avis-services">
+        <span>Réactivité</span>
+        <span>Ponctualité</span>
+        <span>Qualité</span>
+        <span>Professionnalisme</span>
+        <span>Prix</span>
+      </div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>« Je vous remercie pour votre prestation, très satisfait. Je recommande les yeux fermés, à bientôt. »</blockquote>
+      <cite>— Steven H.</cite>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="label">Contact</p>
+      <h2>Parlons de votre projet</h2>
+      <p>
+        Élagueur Paysagiste<br>
+        44 Rue Jean Baspeyras<br>
+        33670 Créon<br><br>
+        <a href="tel:+33785017861">07 85 01 78 61</a><br><br>
+        Devis gratuit, déplacement offert.<br>
+        <em style="color: var(--leaf-light);">Réponse rapide, intervention sous 48h.</em>
+      </p>
+    </div>
+    <div class="contact-right">
+      <p class="label">Zone d'intervention</p>
+      <h3>Créon et alentours</h3>
+      <ul class="zone-list">
+        <li>Créon</li>
+        <li>Sadirac</li>
+        <li>Targon</li>
+        <li>Cadillac</li>
+        <li>Langon</li>
+        <li>La Sauve</li>
+        <li>Camblanes</li>
+        <li>Entre-deux-Mers</li>
+      </ul>
+      <a href="tel:+33785017861" class="contact-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Appeler maintenant
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-name">Élagueur Paysagiste — Créon, Gironde</p>
+  <p>Élagage · Aménagement de jardins · Entretien de pelouses</p>
+  <p class="footer-illus">Photos d'illustration</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.intro, .presta-card, .avis-card, .contact-inner').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
