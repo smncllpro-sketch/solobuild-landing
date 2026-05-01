@@ -37,8 +37,9 @@
   .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--white); margin: 5px 0; }
 
   .hero { padding: 9rem 2.5rem 5rem; background: var(--navy); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: url('sten-rademaker-UZUzvJEvKnI-unsplash.jpg') center/cover no-repeat; opacity: 0.15; }
   .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(transparent, var(--concrete)); }
-  .hero-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
+  .hero-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; position: relative; z-index: 1; }
   .hero-tag { display: inline-block; padding: 0.35rem 1rem; background: rgba(232,113,42,0.15); border: 1px solid rgba(232,113,42,0.3); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange-light); margin-bottom: 1.2rem; animation: fadeIn 0.7s ease 0.2s both; }
   .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -0.02em; animation: fadeIn 0.7s ease 0.3s both; }
   .hero h1 em { font-style: normal; color: var(--orange); }
@@ -64,6 +65,13 @@
   .service-icon { width: 44px; height: 44px; background: rgba(232,113,42,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
   .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
   .service-card p { font-size: 0.85rem; line-height: 1.65; color: var(--text-light); }
+
+  .atelier { padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .atelier-item { position: relative; height: 280px; overflow: hidden; }
+  .atelier-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; filter: saturate(0.85); }
+  .atelier-item:hover img { transform: scale(1.06); }
+  .atelier-item-overlay { position: absolute; inset: 0; background: linear-gradient(transparent 50%, rgba(27,40,56,0.7)); display: flex; align-items: flex-end; padding: 1.2rem; }
+  .atelier-item-overlay span { font-size: 0.78rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; }
 
   .engagement { padding: 5rem 2.5rem; background: var(--navy); color: var(--white); text-align: center; }
   .engagement .section-tag { color: var(--orange-light); }
@@ -112,6 +120,8 @@
     .services-grid { grid-template-columns: 1fr; }
     .eng-grid { grid-template-columns: 1fr 1fr; }
     .avis-grid { grid-template-columns: 1fr; }
+    .atelier { grid-template-columns: 1fr 1fr; }
+    .atelier-item { height: 200px; }
     .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   }
 </style>
@@ -194,6 +204,26 @@
       <h3>Prêt de véhicule</h3>
       <p>Véhicule de prêt disponible pendant la durée de votre réparation, pour ne pas rester bloqué.</p>
     </div>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section class="atelier">
+  <div class="atelier-item">
+    <img src="sten-rademaker-UZUzvJEvKnI-unsplash.jpg" alt="Réparation moteur" loading="lazy">
+    <div class="atelier-item-overlay"><span>Réparation moteur</span></div>
+  </div>
+  <div class="atelier-item">
+    <img src="enis-yavuz-tZtgozUpZZc-unsplash.jpg" alt="Mécanique sur pont" loading="lazy">
+    <div class="atelier-item-overlay"><span>Mécanique sur pont</span></div>
+  </div>
+  <div class="atelier-item">
+    <img src="benjamin-brunner-K3cjUOMmMhc-unsplash.jpg" alt="Pneumatiques" loading="lazy">
+    <div class="atelier-item-overlay"><span>Pneumatiques</span></div>
+  </div>
+  <div class="atelier-item">
+    <img src="isabela-kronemberger-OegFhZfw6Ok-unsplash.jpg" alt="Outillage professionnel" loading="lazy">
+    <div class="atelier-item-overlay"><span>Outillage pro</span></div>
   </div>
 </section>
 
@@ -292,7 +322,7 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.service-card, .eng-item, .avis-card, .contact-inner').forEach(el => {
+  document.querySelectorAll('.service-card, .atelier-item, .eng-item, .avis-card, .contact-inner').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
